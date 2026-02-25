@@ -1,15 +1,6 @@
-# Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
 crash.log
-.terraform.lock.hcl
-
-# macOS
-.DS_Store
-
-# VS Code
-.vscode/
-
-# Sensitive
 *.pem
+.env
