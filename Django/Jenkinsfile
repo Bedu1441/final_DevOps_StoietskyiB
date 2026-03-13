@@ -1,0 +1,40 @@
+pipeline {
+  agent any
+
+  environment {
+    AWS_REGION = "us-east-1"
+    ECR_REPO   = "428941813622.dkr.ecr.us-east-1.amazonaws.com/final-devops-app"
+    IMAGE_TAG  = "latest"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        dir('Django') {
+          sh "docker build -t ${ECR_REPO}:${IMAGE_TAG} ."
+        }
+      }
+    }
+
+    stage('Login to ECR') {
+      steps {
+        sh """
+          aws ecr get-login-password --region ${AWS_REGION} \
+          | docker login --username AWS --password-stdin 428941813622.dkr.ecr.us-east-1.amazonaws.com
+        """
+      }
+    }
+
+    stage('Push to ECR') {
+      steps {
+        sh "docker push ${ECR_REPO}:${IMAGE_TAG}"
+      }
+    }
+  }
+}

@@ -241,3 +241,8 @@ The project successfully demonstrates:
 - Monitoring and observability (Prometheus + Grafana)
 
 The solution provides a complete and functional DevOps pipeline on AWS.
+
+Related repositories:
+
+- https://github.com/username/app-repo
+- https://github.com/username/gitops-repo

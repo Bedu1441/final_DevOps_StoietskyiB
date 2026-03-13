@@ -20,3 +20,13 @@ variable "node_count" {
   type    = number
   default = 2
 }
+
+variable "node_min" {
+  type    = number
+  default = 1
+}
+
+variable "node_max" {
+  type    = number
+  default = 3
+}
